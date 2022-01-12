@@ -1,0 +1,9 @@
+<html>
+  <script>
+    function sendMessageToMyself(type) {
+      window.postMessage({ type: type, message: "Hello from the website!" }, "*");
+    }
+  </script>
+  <button id="mybutton1" onclick="sendMessageToMyself('OPEN_EXTENSION')">open extension</button>
+  <button id="mybutton2" onclick="sendMessageToMyself('TEST_MESSAGE')">test message</button>
+</html>
