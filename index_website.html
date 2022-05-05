@@ -1,9 +1,9 @@
 <html>
   <script>
-    function sendMessageToMyself(type) {
-      window.postMessage({ type: type, message: "Hello from the website!" }, "*");
+    function sendMessageToMyself(message) {
+      window.postMessage(message, "*");
     }
   </script>
-  <button id="mybutton1" onclick="sendMessageToMyself('OPEN_EXTENSION')">open extension</button>
-  <button id="mybutton2" onclick="sendMessageToMyself('TEST_MESSAGE')">test message</button>
+  <button id="mybutton1" onclick="sendMessageToMyself({extensionId: 'will_be_uuid', action: 'OPEN_WALLET', data: {foo: 'bar'}})">open extension via background script</button>
+  <button id="mybutton2" onclick="sendMessageToMyself({extensionId: 'will_be_uuid', action: 'SEND_TRANSACTION', data: {adress: 'zenon-address', token: 'znn', amount: 2}})">send message to extension via content script</button>
 </html>
