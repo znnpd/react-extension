@@ -13,7 +13,9 @@
         "128": "logo192.png"
     },
     "permissions": [
-        "storage"
+        "storage",
+        "tabs",
+        "activeTab"
     ],
     "content_scripts": [
         {
