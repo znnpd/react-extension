@@ -1,27 +1,18 @@
-/*global chrome*/
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
+import {Route, Routes} from "react-router-dom";
+import {Home} from './pages/Home';
+import {SiteApproval} from './pages/SiteApproval';
+import {Transaction} from './pages/Transaction';
 
 function App() {
-    // NOTE: Check first line on top, apparently mandatory for using chrome.runtime.onMessage...
-    React.useEffect(() => {
-        chrome.runtime.onMessage.addListener(
-            function(request, sender, sendResponse) {
-                if (request.action === 'SEND_TRANSACTION') {
-                    sendResponse({response: "Transactions sent!"});
-                    console.log('Extension received message: ', request);
-                }
-            }
-        );
-    }, []);
-  
+     
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-            </header>
-        </div>
+        <Routes>
+            <Route path="/" element = {<Home/>}/>
+            <Route path="/index.html" element = {<Home/>}/>
+            <Route path="/siteapproval.html" element = {<SiteApproval/>}/>
+            <Route path="/transaction.html" element = {<Transaction/>}/>
+        </Routes>
     );
 }
 

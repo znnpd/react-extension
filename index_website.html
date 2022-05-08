@@ -1,6 +1,7 @@
 <html>
   <script>
     function sendMessageToMyself(message) {
+        console.log(chrome.runtime);
       window.postMessage(message, "*");
     }
   </script>
