@@ -22,18 +22,7 @@ window.addEventListener("message", (event) => {
                 }, '*');  // Send a new message as a response back to website
             });
         }
-    } else if (event.data.direction === 'toWebsite') {
-        if (event.data.action == 'UPDATE_CONNECTION_STATUS') {
-            console.log(event.data)
-            /*window.postMessage({
-                extensionId: event.data.extensionId,
-                direction: 'toWebsite',
-                action: 'CONNECT_WALLET', 
-                data: response
-            }, '*');  */
-        }
-    }
-    
+    } 
     
 }, false);
 
@@ -41,5 +30,6 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log(request);
         console.log(sender)
+        sendResponse();
     }
 );

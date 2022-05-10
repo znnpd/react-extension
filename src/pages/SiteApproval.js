@@ -1,30 +1,32 @@
 /*global chrome*/
-import React, {useEffect, useState } from 'react';
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+//import React, {useEffect, useState } from 'react';
+//import { useSearchParams } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
 export const SiteApproval = () => {  
 
-    function setList() {
+    /*function setList() {
         return allowedSitesState.map((element) => { 
             return <li>{element}</li>;
         });
-    }
+    }*/
 
-    function trustOrigin(flag) {
-        if (flag && !allowedSitesState.includes(origin)) {
-            allowedSitesState.push(origin);
+    function trustOrigin() {
+        //if (flag && !allowedSitesState.includes(origin)) {
+        if (true) {
+            /*allowedSitesState.push(origin);
             chrome.storage.local.set({'allowedSites': JSON.stringify(allowedSitesState)}, function() { 
-            });
+            });*/
 
-            setAllowedSites(allowedSitesState);
+            //setAllowedSites(allowedSitesState);
             
             // TO FIX (content script does not receive message)
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                console.log('HERERERER')
                 chrome.tabs.sendMessage(tabs[0].id, {
-                    //extensionId: extensionId,
                     direction: 'toWebsite',
                     action: 'UPDATE_CONNECTION_STATUS', 
                     data: origin
@@ -33,18 +35,18 @@ export const SiteApproval = () => {
                 });
             });
         }
-        navigate('/index.html');
+        //navigate('/index.html');
     }
 
     // Read query params
-    let [searchParams, setSearchParams] = useSearchParams()
-    const origin = searchParams.get("origin");
+    //let [searchParams, setSearchParams] = useSearchParams()
+    //const origin = searchParams.get("origin");
 
     // Handle allowedSites state
-    let [allowedSitesState, setAllowedSites] = useState([]);
+    //let [allowedSitesState, setAllowedSites] = useState([]);
 
     // Read allowedSites from storage and put them in the state
-    useEffect(() => {
+    /*useEffect(() => {
         chrome.storage.local.get(['allowedSites'], function(result) {
             if (result.allowedSites) {
                 result.allowedSites = JSON.parse(result.allowedSites);
@@ -54,9 +56,9 @@ export const SiteApproval = () => {
             setAllowedSites(result.allowedSites);
           });
         
-    }, []);
+    }, []);*/
 
-    let navigate = useNavigate();  // Hook
+    //let navigate = useNavigate();  // Hook
 
     return (
         <Grid container spacing={2}>
@@ -69,7 +71,7 @@ export const SiteApproval = () => {
             <Grid item xs={1}/>
             <Grid item xs={10}>
                 <ul>
-                    {setList()}
+                    {/*setList()*/}
                 </ul>
             </Grid>
             <Grid item xs={1}/>
@@ -81,7 +83,7 @@ export const SiteApproval = () => {
             <Grid item xs={1}/>
             <Grid item xs={10}>
                 <Button variant="outlined" onClick={() => {
-                           trustOrigin(true);  
+                           trustOrigin();  
                         }}>
                         YES
                 </Button>
@@ -90,7 +92,7 @@ export const SiteApproval = () => {
             <Grid item xs={1}/>
             <Grid item xs={10}>
                 <Button variant="outlined" onClick={() => {
-                            trustOrigin(false);  
+                            trustOrigin();  
                         }}>
                         NO
                 </Button>
