@@ -1,7 +1,7 @@
 window.addEventListener("message", (event) => {
 
     // We only accept messages from ourselves and for the correct extension
-    if (event.source != window || !event.data || (event.data.direction !== 'toExtension' && event.data.direction !== 'toWebsite')  || event.data.extensionId !== 'debacohmniakednmhgobhbopmocbfkja') {
+    if (event.source != window || !event.data || (event.data.direction !== 'toExtension' && event.data.direction !== 'toWebsite')  || event.data.extensionId !== chrome.runtime.id) {
         return;
     }
     const actions = ['CONNECT_WALLET', 'OPEN_WALLET', 'SEND_TRANSACTION'];
